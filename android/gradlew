@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+set -eu
+
+if [ -x "../.tooling/gradle-8.7/bin/gradle" ]; then
+  exec "../.tooling/gradle-8.7/bin/gradle" "$@"
+fi
+
+if command -v gradle >/dev/null 2>&1; then
+  exec gradle "$@"
+fi
+
+echo "Gradle no esta instalado en el entorno actual." >&2
+exit 1
